@@ -1,1 +1,1 @@
-sakurakocity: python3 sakurakocity/run.py
+web: python3 sakurakocity/run.py
