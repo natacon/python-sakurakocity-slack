@@ -40,8 +40,17 @@ def nowa(message):
 @listen_to('うんこ')
 @listen_to('しっこ')
 def shicco(message):
+    message.react('shit')
     message.send(random.choice(['うんこゎたしてぃ！', 'しっこゎたしてぃ！']))
 
 @listen_to('らふこふ')
 def listen(message):
     message.send('らこしてぃだぞ')
+
+@listen_to('こちたまん')
+def kochitaman(message):
+    message.react('こちたまん')
+
+@listen_to('ありがと')
+def thankyou(message):
+    message.react('まきちゎ')
