@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from slackbot.bot import respond_to, listen_to, default_reply
+from slackbot.bot import listen_to
 import random
+# from sakurakocity.dictionaries import user_dict
+# from sakurakocity.libs import get_user
 
-@listen_to('ん～')
-@listen_to('ん〜')
+@listen_to('ん～|ん〜')
 def nnn(message):
     message.send(random.choice(['ましゃーーー！']))
 
-@listen_to('らこしてぃ')
-@listen_to('さく')
-@listen_to('らこすて')
+@listen_to('らこしてぃ|さく|らこすて')
 def rakosute(message):
     message.send(random.choice(['なんだ？', 'よんだ？']))
 
@@ -18,27 +17,15 @@ def rakosute(message):
 def yoshiyoshi(message):
     message.send(random.choice(['よしよしまきゎ']))
 
-@listen_to('ちゎ')
-@listen_to('ちわ')
-@listen_to('ちぁ')
-@listen_to('ちあ')
+@listen_to('ちゎ|ちわ|ちぁ|ちあ')
 def chiwa(message):
     message.send(random.choice(['ちゎ！']))
 
-@listen_to('まきのゎ')
-@listen_to('まきゎ')
-@listen_to('まきわ')
-@listen_to('まきのわ')
-@listen_to('ゆきのゎ')
-@listen_to('ゆきのわ')
-@listen_to('ちゎしてぃ')
-@listen_to('のゎしてぃ！')
-@listen_to('のゎたしてぃ！')
+@listen_to('のゎ|まきゎ|まきわ|のわ|のゎ|ちゎしてぃ|のゎしてぃ|のゎたしてぃ')
 def nowa(message):
     message.send(random.choice(['のゎしてぃ！', 'ちゎしてぃ！']))
 
-@listen_to('うんこ')
-@listen_to('しっこ')
+@listen_to('うんこ|しっこ')
 def shicco(message):
     message.react('shit')
     message.send(random.choice(['うんこゎたしてぃ！', 'しっこゎたしてぃ！']))
@@ -54,3 +41,19 @@ def kochitaman(message):
 @listen_to('ありがと')
 def thankyou(message):
     message.react('まきちゎ')
+
+@listen_to('user_info')
+def user_info(message):
+    user = get_user(message)
+    message.send(str(user))
+
+@listen_to('しごおわ')
+def shigoowa(message):
+    user = get_user(message)
+    message.send(user_dict[user['name']] + 'おつかれさまきゎだぞ:こちたまん:')
+
+# 以下はimportしたい。
+def get_user(message):
+    return message._client.users[message.body['user']]
+
+user_dict = {'yukinowacity': 'ゆきちゎ', 'makinowacity': 'まきちゎ'}

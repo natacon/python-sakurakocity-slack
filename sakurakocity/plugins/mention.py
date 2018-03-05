@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from slackbot.bot import respond_to, listen_to, default_reply
+from slackbot.bot import respond_to
 import random
 
 @respond_to('ごはん')

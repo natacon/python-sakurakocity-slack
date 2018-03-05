@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 
-API_TOKEN = os.environ.get('SLACK_API_TOKEN', '')
+API_TOKEN = os.environ.get('SLACK_API_TOKEN')
 DEFAULT_REPLY = "なんだ？"
 PLUGINS = [
     'plugins'
 ]
+ERRORS_TO = 'yukinowacity'
