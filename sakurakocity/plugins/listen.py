@@ -54,13 +54,13 @@ def shigoowa(message):
 @listen_to('結婚して|けっこんして|marrige')
 def marrige_count(message):
     diff_d = diff_day(day_dict['marrige_day'], datetime.date.today())
-    message.send('結婚して' + str(diff_d + 1) + u'日だぞ。')
+    message.send('結婚して' + str(diff_d) + u'日だぞ。')
     print(diff_year(day_dict['marrige_day'], datetime.date.today()))
 
 @listen_to('付き合って|つきあって|couple|カップル')
 def couple_count(message):
     diff_d = diff_day(day_dict['couple_day'], datetime.date.today())
-    message.send('付き合って' + str(diff_d + 1) + u'日だぞ。')
+    message.send('付き合って' + str(diff_d) + u'日だぞ。')
 
 @listen_to('何の日|なんのひ')
 def what_day(message):
@@ -70,7 +70,7 @@ def what_day(message):
     else:
         message.send('ん？')
 
-@listen_to('anniversary')
+@listen_to('anniv')
 def anniversary(message):
     message.send(str(day_dict))
 
