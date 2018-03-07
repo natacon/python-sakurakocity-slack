@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-
 from slackbot.bot import listen_to
 import random
-# from sakurakocity.dictionaries import user_dict
-# from sakurakocity.libs import get_user
+from .dictionaries import *
+import datetime
 
 @listen_to('ん～|ん〜')
 def nnn(message):
@@ -50,10 +49,45 @@ def user_info(message):
 @listen_to('しごおわ')
 def shigoowa(message):
     user = get_user(message)
-    message.send(user_dict[user['name']] + 'おつかれさまきゎだぞ:こちたまん:')
+    message.send(user_dict[user['name']] + 'おつかれさまきゎだぞ。:こちたまん:')
 
-# 以下はimportしたい。
-def get_user(message):
-    return message._client.users[message.body['user']]
+@listen_to('結婚して|けっこんして|marrige')
+def marrige_count(message):
+    diff_d = diff_day(day_dict['marrige_day'], datetime.date.today())
+    message.send('結婚して' + str(diff_d + 1) + u'日だぞ。')
+    print(diff_year(day_dict['marrige_day'], datetime.date.today()))
 
-user_dict = {'yukinowacity': 'ゆきちゎ', 'makinowacity': 'まきちゎ'}
+@listen_to('付き合って|つきあって|couple|カップル')
+def couple_count(message):
+    diff_d = diff_day(day_dict['couple_day'], datetime.date.today())
+    message.send('付き合って' + str(diff_d + 1) + u'日だぞ。')
+
+@listen_to('何の日|なんのひ')
+def what_day(message):
+    today = datetime.date.today()
+    if today.month == 3 and today.day == 7:
+        message.send('記念日だぞ')
+    else:
+        message.send('ん？')
+
+@listen_to('何日目')
+def day_count(message):
+    diff_couple = diff_day(day_dict['couple_day'], datetime.date.today())
+    diff_marrige = diff_day(day_dict['marrige_day'], datetime.date.today())
+    message.send('付き合って' + str(diff_couple + 1) + u'日目、結婚して' + str(diff_marrige + 1) + u'日目だぞ。')
+
+def diff_day(d1: datetime.date, d2: datetime.date) -> int:
+    if d1 > d2:
+        d1, d2 = d2, d1
+    return (d2 - d1).days
+
+def diff_month(d1: datetime.date, d2: datetime.date) -> int:
+    if d1 > d2:
+        d1, d2 = d2, d1
+    return (d2.year - d1.year) * 12 + d2.month - d1.month
+
+def diff_year(d1: datetime.date, d2: datetime.date) -> int:
+    if d1 > d2:
+        d1, d2 = d2, d1
+    diff_m = (d2.year - d1.year) * 12 + d2.month - d1.month
+    return diff_m/12
