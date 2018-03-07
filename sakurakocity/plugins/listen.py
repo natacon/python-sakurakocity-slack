@@ -70,6 +70,10 @@ def what_day(message):
     else:
         message.send('ん？')
 
+@listen_to('anniversary')
+def anniversary(message):
+    message.send(str(day_dict))
+
 @listen_to('何日目')
 def day_count(message):
     diff_couple = diff_day(day_dict['couple_day'], datetime.date.today())
@@ -86,7 +90,7 @@ def diff_month(d1: datetime.date, d2: datetime.date) -> int:
         d1, d2 = d2, d1
     return (d2.year - d1.year) * 12 + d2.month - d1.month
 
-def diff_year(d1: datetime.date, d2: datetime.date) -> int:
+def diff_year(d1: datetime.date, d2: datetime.date) -> float:
     if d1 > d2:
         d1, d2 = d2, d1
     diff_m = (d2.year - d1.year) * 12 + d2.month - d1.month
