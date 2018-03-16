@@ -22,7 +22,7 @@ def chiwa(message):
 
 @listen_to('のゎ|まきゎ|まきわ|のわ|のゎ|ちゎしてぃ|のゎしてぃ|のゎたしてぃ')
 def nowa(message):
-    message.send(random.choice(['のゎしてぃ！', 'ちゎしてぃ！']))
+    message.send(random.choice(['ちゎしてぃ！']))
 
 @listen_to('うんこ|しっこ')
 def shicco(message):
@@ -67,6 +67,14 @@ def what_day(message):
     today = datetime.date.today()
     if today.month == 3 and today.day == 7:
         message.send('記念日だぞ')
+    if today.month == 10 and today.day == 10:
+        message.send('プロポーズの日だぞ')
+    if today.month == 2 and today.day == 4:
+        message.send('結婚式の日だぞ')
+    if today.month == 1 and today.day == 1:
+        message.send('まきちゎの誕生日だぞ')
+    if today.month == 1 and today.day == 13:
+        message.send('ゆきちゎの誕生日だぞ')
     else:
         message.send('ん？')
 
