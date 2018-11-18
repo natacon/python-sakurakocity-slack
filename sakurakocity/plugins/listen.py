@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from slackbot.bot import listen_to
+from slackbot.bot import respond_to
 import random
 from .dictionaries import *
 import datetime
@@ -52,17 +53,20 @@ def shigoowa(message):
     message.send(user_dict[user['name']] + 'おつかれさまきゎだぞ。:こちたまん:')
 
 @listen_to('結婚して|けっこんして|marrige')
+@respond_to('結婚して|けっこんして|marrige')
 def marrige_count(message):
     diff_d = diff_day(day_dict['marrige_day'], datetime.date.today())
     message.send('結婚して' + str(diff_d) + u'日だぞ。')
     print(diff_year(day_dict['marrige_day'], datetime.date.today()))
 
 @listen_to('付き合って|つきあって|couple|カップル')
+@respond_to('付き合って|つきあって|couple|カップル')
 def couple_count(message):
     diff_d = diff_day(day_dict['couple_day'], datetime.date.today())
     message.send('付き合って' + str(diff_d) + u'日だぞ。')
 
 @listen_to('何の日|なんのひ')
+@respond_to('何の日|なんのひ')
 def what_day(message):
     today = datetime.date.today()
     if today.month == 3 and today.day == 7:
@@ -79,10 +83,12 @@ def what_day(message):
         message.send('ん？')
 
 @listen_to('anniv')
+@respond_to('anniv')
 def anniversary(message):
     message.send(str(day_dict))
 
 @listen_to('何日目')
+@respond_to('何日目')
 def day_count(message):
     diff_couple = diff_day(day_dict['couple_day'], datetime.date.today())
     diff_marrige = diff_day(day_dict['marrige_day'], datetime.date.today())
