@@ -5,10 +5,6 @@ import random
 from .dictionaries import *
 import datetime
 
-@listen_to('ん～|ん〜')
-def nnn(message):
-    message.send(random.choice(['ましゃーーー！']))
-
 @listen_to('らこしてぃ|さく|らこすて')
 def rakosute(message):
     message.send(random.choice(['なんだ？', 'よんだ？']))
