@@ -1,0 +1,2 @@
+# sakurakocity
+slackさくらこさんbotのpythonバージョン
